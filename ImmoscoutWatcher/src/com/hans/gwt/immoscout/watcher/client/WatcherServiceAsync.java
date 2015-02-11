@@ -1,7 +1,9 @@
 package com.hans.gwt.immoscout.watcher.client;
 
-import com.hans.gwt.immoscout.watcher.server.Immobilie;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public interface WatcherServiceAsync {
-  void getImmos(String[] someParams, AsyncCallback<Immobilie[]> callback);
+
+	void getImmos(String[] someParams, AsyncCallback<Immobilie[]> callback);
+
 }

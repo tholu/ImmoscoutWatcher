@@ -1,114 +1,124 @@
-/*******************************************************************************
- * Copyright 2011 Google Inc. All Rights Reserved.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
 package com.hans.gwt.immoscout.watcher.client;
 
-import com.hans.gwt.immoscout.watcher.server.Immobilie;
+import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class ImmoscoutWatcher implements EntryPoint {
-  private VerticalPanel mainPanel;
+	private VerticalPanel mainPanel;
 
-  private FlexTable flexTable;
+	private FlexTable flexTable;
 
-  private ScrollPanel scrollPanel;
+	private ScrollPanel scrollPanel;
 
-  private Button startButton;
+	private Button startButton;
 
-  @Override
-  public void onModuleLoad() {
-    final RootPanel rootPanel = RootPanel.get();
-    rootPanel.add(getMainPanel(), 0, 0);
-  }
+	@Override
+	public void onModuleLoad() {
+		final RootPanel rootPanel = RootPanel.get();
+		rootPanel.add(getMainPanel(), 0, 0);
+	}
 
-  private VerticalPanel getMainPanel() {
-    if (this.mainPanel == null) {
-      this.mainPanel = new VerticalPanel();
-      this.mainPanel.setStyleName("gwt-DisclosurePanel");
-      this.mainPanel.setSize("900px", "600px");
-      this.mainPanel.add(getScrollPanel());
-      this.mainPanel.add(getStartButton());
-      this.mainPanel.setCellHorizontalAlignment(getStartButton(), HasHorizontalAlignment.ALIGN_CENTER);
-    }
-    return this.mainPanel;
-  }
+	private VerticalPanel getMainPanel() {
+		if (mainPanel == null) {
+			mainPanel = new VerticalPanel();
+			mainPanel.setStyleName("gwt-DisclosurePanel");
+			mainPanel.setSize("900px", "600px");
+			mainPanel.add(getScrollPanel());
+			mainPanel.add(getStartButton());
+			mainPanel.setCellHorizontalAlignment(getStartButton(),
+					HasHorizontalAlignment.ALIGN_CENTER);
+		}
+		return mainPanel;
+	}
 
-  private FlexTable getFlexTable() {
-    if (this.flexTable == null) {
-      this.flexTable = new FlexTable();
-      this.flexTable.setStyleName("gwt-RichTextToolbar .gwt-ToggleButton-up");
-      this.flexTable.setSize("100%", "100%");
-    }
-    return this.flexTable;
-  }
+	private FlexTable getFlexTable() {
+		if (flexTable == null) {
+			flexTable = new FlexTable();
+			flexTable.setStyleName("gwt-RichTextToolbar .gwt-ToggleButton-up");
+			flexTable.setSize("100%", "100%");
+		}
+		return flexTable;
+	}
 
-  private ScrollPanel getScrollPanel() {
-    if (this.scrollPanel == null) {
-      this.scrollPanel = new ScrollPanel();
-      this.scrollPanel.setSize("100%", "600px");
-      this.scrollPanel.setWidget(getFlexTable());
-    }
-    return this.scrollPanel;
-  }
+	private ScrollPanel getScrollPanel() {
+		if (scrollPanel == null) {
+			scrollPanel = new ScrollPanel();
+			scrollPanel.setSize("100%", "600px");
+			scrollPanel.setWidget(getFlexTable());
+		}
+		return scrollPanel;
+	}
 
-  private Button getStartButton() {
-    if (this.startButton == null) {
-      this.startButton = new Button("Start");
-      this.startButton.addClickHandler(new ClickHandler(){
-        @Override
-        public void onClick(final ClickEvent event) {
-          getAndDisplayResults();
-        }
-      });
-      this.startButton.setStyleName("gwt-PushButton-up");
-      this.startButton.setFocus(true);
-    }
-    return this.startButton;
-  }
+	private Button getStartButton() {
+		if (startButton == null) {
+			startButton = new Button("Start");
+			startButton.addClickHandler(new ClickHandler() {
+				@Override
+				public void onClick(final ClickEvent event) {
+					getAndDisplayResults();
+				}
+			});
+			startButton.setStyleName("gwt-PushButton-up");
+			startButton.setFocus(true);
+		}
+		return startButton;
+	}
 
-  private void getAndDisplayResults() {
-    StockPriceServiceAsync stockPriceSvc;
-    // Initialize the service proxy.
-    if (stockPriceSvc == null) {
-      stockPriceSvc = GWT.create(StockPriceService.class);
-    }
+	private void getAndDisplayResults() {
+		WatcherServiceAsync watcherService = null;
+		// Initialize the service proxy.
+		if (watcherService == null) {
+			watcherService = GWT.create(WatcherService.class);
+			// ((ServiceDefTarget) watcherService)
+			// .setServiceEntryPoint("http://127.0.0.1:8888/ImmoscoutWatcher.html?gwt.codesvr=127.0.0.1:9997/myServices");
+		}
 
-    // Set up the callback object.
-    final AsyncCallback<Immobilie[][]> callback = new AsyncCallback<Immobilie[]>(){
-      public void onFailure(Throwable caught) {
-        // TODO: Do something with errors.
-        System.out.println("Error in on Failure ...");
-      }
+		// Set up the callback object.
+		final AsyncCallback<Immobilie[]> callback = new AsyncCallback<Immobilie[]>() {
+			@Override
+			public void onFailure(final Throwable caught) {
+				// TODO: Do something with errors.
+				System.out.println("Error in on Failure ...");
+				System.out.println(caught);
+				System.out.println(caught.getMessage());
+				caught.printStackTrace();
+			}
 
-      public void onSuccess(Immobilie[] result) {
-        // write results
-        int i = 1;
-        for (final Immobilie immo : result) {
-          getFlexTable().setText(i, 0, i);
-          getFlexTable().setText(i, 1, immo.titleString);
-          getFlexTable().setText(i, 1, immo.objectIDString);
-          getFlexTable().setText(i, 1, immo.kaufpreisString);
-          getFlexTable().setText(i, 1, immo.wohnflaecheString);
-          getFlexTable().setText(i, 1, immo.zimmerString);
-          i++;
-        }
-      }
-    };
+			@Override
+			public void onSuccess(final Immobilie[] result) {
+				// write results
+				int i = 1;
+				for (final Immobilie immo : result) {
+					final StringBuilder titleStringBuilder = new StringBuilder(
+							immo.titleString);
+					titleStringBuilder.setLength(20);
 
-    // Make the call to the stock price service.
-    final String[] someParams = new String[1];
-    someParams[0] = "4711 Params";
-    stockPriceSvc.getPrices(someParams.toArray(new String[0]), callback);
-  }
+					getFlexTable().setText(i, 0, i + "");
+					getFlexTable().setText(i, 1, titleStringBuilder.toString());
+					getFlexTable().setText(i, 2, immo.objectIDString);
+					getFlexTable().setText(i, 3, immo.kaufpreisString);
+					getFlexTable().setText(i, 4, immo.wohnflaecheString);
+					getFlexTable().setText(i, 5, immo.zimmerString);
+					i++;
+				}
+			}
+		};
+
+		// Make the call to the stock price service.
+		final String[] someParams = new String[1];
+		someParams[0] = "4711 Params";
+		watcherService.getImmos(someParams, callback);
+	}
 }

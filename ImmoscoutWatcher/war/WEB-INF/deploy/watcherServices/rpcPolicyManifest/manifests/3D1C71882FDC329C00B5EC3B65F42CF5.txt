@@ -1,0 +1,2 @@
+serviceClass: com.hans.gwt.immoscout.watcher.client.WatcherService
+path: 322C4FD14C60CEF9FCD10370433F5D33.gwt.rpc

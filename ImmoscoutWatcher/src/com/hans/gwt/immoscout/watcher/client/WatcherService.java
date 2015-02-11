@@ -1,10 +1,11 @@
 package com.hans.gwt.immoscout.watcher.client;
 
-import com.hans.gwt.immoscout.watcher.server.Immobilie;
+import com.google.gwt.user.client.rpc.RemoteService;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("myServices")
 public interface WatcherService extends RemoteService {
 
-  Immobilie[] getImmos(String[] someParams);
+	Immobilie[] getImmos(String[] someParams);
 
 }

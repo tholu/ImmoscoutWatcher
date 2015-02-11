@@ -8,6 +8,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.hans.gwt.immoscout.watcher.client.Immobilie;
+
 public class ImmoscoutParser {
 
 	public static ArrayList<Immobilie> getImmoData(final String urlString) {

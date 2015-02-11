@@ -12,13 +12,13 @@
 
 	<!-- Servlets -->
   <servlet>
-    <servlet-name>WatcherServiceImpl</servlet-name>
+    <servlet-name>watcherServiceImpl</servlet-name>
     <servlet-class>com.hans.gwt.immoscout.watcher.server.WatcherServiceImpl</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>WatcherServiceImpl</servlet-name>
-    <url-pattern>/moduleRename/myServices</url-pattern>
+    <servlet-name>watcherServiceImpl</servlet-name>
+    <url-pattern>/com.hans.gwt.immoscout.watcher.ImmoscoutWatcher/myServices</url-pattern>
   </servlet-mapping>
   
 </web-app>

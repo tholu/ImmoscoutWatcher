@@ -1,2 +1,3 @@
 # Module com.hans.gwt.immoscout.watcher.ImmoscoutWatcher
 # RPC service class, partial path of RPC policy file
+com.hans.gwt.immoscout.watcher.client.WatcherService, 322C4FD14C60CEF9FCD10370433F5D33.gwt.rpc
