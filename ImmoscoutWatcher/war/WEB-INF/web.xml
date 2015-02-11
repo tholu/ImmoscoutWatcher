@@ -10,4 +10,15 @@
 		<welcome-file>ImmoscoutWatcher.html</welcome-file>
 	</welcome-file-list>
 
+	<!-- Servlets -->
+  <servlet>
+    <servlet-name>WatcherServiceImpl</servlet-name>
+    <servlet-class>com.hans.gwt.immoscout.watcher.server.WatcherServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>WatcherServiceImpl</servlet-name>
+    <url-pattern>/moduleRename/myServices</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
