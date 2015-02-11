@@ -1,1 +1,1 @@
-# ImmoscoutWatcher
+# GWTWatcher
