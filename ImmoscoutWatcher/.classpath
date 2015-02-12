@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/Users/Hans/Documents/Coding/JSoup/jsoup-1.8.1-javadoc.jar"/>
-	<classpathentry kind="lib" path="/Users/Hans/Documents/Coding/JSoup/jsoup-1.8.1-sources.jar"/>
-	<classpathentry kind="lib" path="/Users/Hans/Documents/Coding/git/master/ImmoscoutWatcher/ImmoscoutWatcher/war/WEB-INF/lib/jsoup-1.8.1.jar" sourcepath="/WebCrawler2.0/JSoup/jsoup-1.8.1-sources.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/WebCrawler/JSoup/jsoup-1.8.1-javadoc.jar!/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JDK1.8"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/GWT-2.7.0"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/Hans/Documents/Coding/git/master/ImmoscoutWatcher/ImmoscoutWatcher/war/WEB-INF/lib/jsoup-1.8.1.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

@@ -1,18 +1,16 @@
 package com.hans.gwt.immoscout.watcher.client;
 
-import java.io.Serializable;
+import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class Immobilie implements Serializable {
+public class Immobilie implements IsSerializable {
 
-  private static final long serialVersionUID = 1L;
+	public String titleString;
 
-  public String titleString;
+	public String kaufpreisString;
 
-  public String kaufpreisString;
+	public String wohnflaecheString;
 
-  public String wohnflaecheString;
+	public String zimmerString;
 
-  public String zimmerString;
-
-  public String objectIDString;
+	public String objectIDString;
 }

@@ -8,6 +8,8 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -94,9 +96,9 @@ public class ImmoscoutWatcher implements EntryPoint {
 				System.out.println(caught);
 				System.out.println(caught.getMessage());
 				caught.printStackTrace();
-				
-				PopupPanel popupPanel = new PopupPanel(true);
-				popupPanel.setWidget(new Label("Error: " + caught + caught.getMessage()));
+
+				final PopupPanel popupPanel = new PopupPanel(true);
+				popupPanel.setWidget(new Label(caught.getMessage()));
 				popupPanel.show();
 			}
 
