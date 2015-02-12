@@ -79,6 +79,7 @@ public class ImmoscoutWatcher implements EntryPoint {
 	}
 
 	private void getAndDisplayResults() {
+		getFlexTable().setText(0, 0, "Talking to server ...");
 		WatcherServiceAsync watcherService = null;
 		// Initialize the service proxy.
 		if (watcherService == null) {
@@ -107,9 +108,13 @@ public class ImmoscoutWatcher implements EntryPoint {
 				// write results
 				int i = 1;
 				for (final Immobilie immo : result) {
-					final StringBuilder titleStringBuilder = new StringBuilder(
-							immo.titleString);
-					titleStringBuilder.setLength(20);
+					StringBuilder titleStringBuilder;
+					if (immo.titleString != null) {
+						titleStringBuilder = new StringBuilder(immo.titleString);
+					} else {
+						titleStringBuilder = new StringBuilder("default Value");
+					}
+					titleStringBuilder.setLength(30);
 
 					getFlexTable().setText(i, 0, i + "");
 					getFlexTable().setText(i, 1, titleStringBuilder.toString());
