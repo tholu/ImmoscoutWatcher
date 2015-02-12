@@ -94,6 +94,10 @@ public class ImmoscoutWatcher implements EntryPoint {
 				System.out.println(caught);
 				System.out.println(caught.getMessage());
 				caught.printStackTrace();
+				
+				PopupPanel popupPanel = new PopupPanel(true);
+				popupPanel.setWidget(new Label("Error: " + caught + caught.getMessage()));
+				popupPanel.show();
 			}
 
 			@Override
