@@ -5,5 +5,11 @@
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/GWT-2.7.0"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
 	<classpathentry kind="lib" path="/Users/Hans/Documents/Coding/git/master/ImmoscoutWatcher/ImmoscoutWatcher/war/WEB-INF/lib/jsoup-1.8.1.jar"/>
+	<classpathentry kind="lib" path="/Users/Hans/Documents/Coding/springframework/spring-aop/4.1.6.RELEASE/spring-aop-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Users/Hans/Documents/Coding/springframework/spring-asm/3.0.5.RELEASE/spring-asm-3.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Users/Hans/Documents/Coding/springframework/spring-beans/4.1.6.RELEASE/spring-beans-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Users/Hans/Documents/Coding/springframework/spring-context/4.1.6.RELEASE/spring-context-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Users/Hans/Documents/Coding/springframework/spring-core/4.1.6.RELEASE/spring-core-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Users/Hans/Documents/Coding/springframework/spring-expression/4.1.6.RELEASE/spring-expression-4.1.6.RELEASE.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

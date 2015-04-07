@@ -1,3 +1,4 @@
 /bin/
 /gwt-unitCache/
 .DS_Store
+/war/

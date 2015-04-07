@@ -129,7 +129,7 @@ public class ImmoscoutWatcher implements EntryPoint {
 
 		// Make the call to the stock price service.
 		final String[] someParams = new String[1];
-		someParams[0] = "4711 Params";
+		someParams[0] = "4711 param";
 		watcherService.getImmos(someParams, callback);
 	}
 }

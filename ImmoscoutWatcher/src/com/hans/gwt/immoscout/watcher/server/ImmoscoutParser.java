@@ -1,4 +1,5 @@
 package com.hans.gwt.immoscout.watcher.server;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ListIterator;
