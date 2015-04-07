@@ -1,9 +1,12 @@
 package com.hans.gwt.immoscout.watcher.client;
 
+import java.util.List;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window.Navigator;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -28,6 +31,11 @@ public class ImmoscoutWatcher implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
+		initUI();
+		getAndDisplayResults();
+	}
+
+	private void initUI() {
 		final RootPanel rootPanel = RootPanel.get();
 		rootPanel.add(getMainPanel(), 0, 0);
 	}
@@ -89,11 +97,12 @@ public class ImmoscoutWatcher implements EntryPoint {
 		}
 
 		// Set up the callback object.
-		final AsyncCallback<Immobilie[]> callback = new AsyncCallback<Immobilie[]>() {
+		final AsyncCallback<List<Immobilie>> callback = new AsyncCallback<List<Immobilie>>() {
 			@Override
 			public void onFailure(final Throwable caught) {
 				// TODO: Do something with errors.
-				System.out.println("Error in on Failure ...");
+				System.out
+						.println("Request returned with an Error, executing onFailure() method.");
 				System.out.println(caught);
 				System.out.println(caught.getMessage());
 				caught.printStackTrace();
@@ -104,20 +113,13 @@ public class ImmoscoutWatcher implements EntryPoint {
 			}
 
 			@Override
-			public void onSuccess(final Immobilie[] result) {
+			public void onSuccess(final List<Immobilie> result) {
 				// write results
 				int i = 1;
 				for (final Immobilie immo : result) {
-					StringBuilder titleStringBuilder;
-					if (immo.titleString != null) {
-						titleStringBuilder = new StringBuilder(immo.titleString);
-					} else {
-						titleStringBuilder = new StringBuilder("default Value");
-					}
-					titleStringBuilder.setLength(30);
-
 					getFlexTable().setText(i, 0, i + "");
-					getFlexTable().setText(i, 1, titleStringBuilder.toString());
+					getFlexTable().setText(i, 1,
+							extractTitleWithMaxLength(immo, 30));
 					getFlexTable().setText(i, 2, immo.objectIDString);
 					getFlexTable().setText(i, 3, immo.kaufpreisString);
 					getFlexTable().setText(i, 4, immo.wohnflaecheString);
@@ -125,11 +127,25 @@ public class ImmoscoutWatcher implements EntryPoint {
 					i++;
 				}
 			}
+
+			private String extractTitleWithMaxLength(final Immobilie immo,
+					final int maxLength) {
+				StringBuilder titleStringBuilder;
+				if (immo.titleString != null) {
+					titleStringBuilder = new StringBuilder(immo.titleString);
+				} else {
+					titleStringBuilder = new StringBuilder("default Value");
+				}
+				titleStringBuilder.setLength(30);
+				return titleStringBuilder.toString();
+			}
 		};
 
 		// Make the call to the stock price service.
 		final String[] someParams = new String[1];
-		someParams[0] = "4711 param";
+		// http://www.gwtproject.org/javadoc/latest/com/google/gwt/user/client/Window.Navigator.html
+		someParams[0] = Navigator.getUserAgent();
+		getFlexTable().setText(1, 0, Navigator.getUserAgent());
 		watcherService.getImmos(someParams, callback);
 	}
 }

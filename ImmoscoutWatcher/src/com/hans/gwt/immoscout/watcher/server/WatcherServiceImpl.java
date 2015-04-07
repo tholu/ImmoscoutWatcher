@@ -1,6 +1,7 @@
 package com.hans.gwt.immoscout.watcher.server;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,8 +17,17 @@ WatcherService {
 	private final Set<String> ipAdresses = new HashSet<String>();
 
 	@Override
-	public Immobilie[] getImmos(final String[] someParams) {
-		return getDummyData();
+	public List<Immobilie> getImmos(final String[] someParams) {
+		return getJPADummyData(someParams);
+	}
+
+	public List<Immobilie> getJPADummyData(final String[] someParams) {
+		final String userAgent = someParams[0];
+		DataAccessObjectImmo.INSTANCE.add(userAgent, getThreadLocalRequest()
+				.getRemoteAddr(), getThreadLocalRequest().getAuthType(),
+				getThreadLocalRequest().getRemoteUser(), Calendar.getInstance()
+				.getTime().toString());
+		return DataAccessObjectImmo.INSTANCE.getAllImmobilien();
 	}
 
 	public Immobilie[] getDummyData() {

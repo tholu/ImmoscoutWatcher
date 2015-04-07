@@ -1,7 +1,11 @@
 package com.hans.gwt.immoscout.watcher.client;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import com.google.gwt.user.client.rpc.IsSerializable;
 
+@Entity
 public class Immobilie implements IsSerializable {
 
 	public String titleString;
@@ -12,6 +16,8 @@ public class Immobilie implements IsSerializable {
 
 	public String zimmerString;
 
+	@Id
+	// @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public String objectIDString;
 
 	public Immobilie() {
@@ -41,4 +47,45 @@ public class Immobilie implements IsSerializable {
 												+ (objectIDString != null ? "objectIDString=" + objectIDString
 														: "") + "]";
 	}
+
+	public String getTitleString() {
+		return titleString;
+	}
+
+	public void setTitleString(final String titleString) {
+		this.titleString = titleString;
+	}
+
+	public String getKaufpreisString() {
+		return kaufpreisString;
+	}
+
+	public void setKaufpreisString(final String kaufpreisString) {
+		this.kaufpreisString = kaufpreisString;
+	}
+
+	public String getWohnflaecheString() {
+		return wohnflaecheString;
+	}
+
+	public void setWohnflaecheString(final String wohnflaecheString) {
+		this.wohnflaecheString = wohnflaecheString;
+	}
+
+	public String getZimmerString() {
+		return zimmerString;
+	}
+
+	public void setZimmerString(final String zimmerString) {
+		this.zimmerString = zimmerString;
+	}
+
+	public String getObjectIDString() {
+		return objectIDString;
+	}
+
+	public void setObjectIDString(final String objectIDString) {
+		this.objectIDString = objectIDString;
+	}
+
 }
